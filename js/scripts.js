@@ -19,8 +19,13 @@ const render = response => {
 
     const width = window.innerWidth - margin.left - margin.right,
         height = window.innerHeight - margin.top - margin.bottom,
-        data = response.monthlyVariance;
-
+        data = response.monthlyVariance,
+        minYear = d3.min(data, d => d.year),
+        maxYear = d3.max(data, d => d.year),
+        item = {
+            width: width / (maxYear - minYear),
+            height: height / 12
+        };
 
     const svg = d3.select('.container')
         .append('svg')
@@ -28,14 +33,31 @@ const render = response => {
         .attr('height', height);
 
     const xScale = d3.scaleLinear()
-        .domain([d3.min(data, d => d.year), d3.max(data, d => d.year)])
-        .range(0, width);
+        .domain([minYear, maxYear])
+        .range([0, width]);
 
     const yScale = d3.scaleLinear()
-        .domain([1,12])
-        .range([margin.top, height + margin.bottom]);
+        .domain([1, 12])
+        .range([margin.top, height - margin.bottom]);
 
-    const xAxis = d3.axisBottom(xScale);
+    const xAxis = d3.axisBottom(xScale),
+        yAxis =  d3.axisLeft(yScale);
 
-    const yAxis =  d3.axisLeft(yScale)
+    svg.append('g')
+        .attr('transform', `translate(${margin.left}, ${height - margin.bottom})`)
+        .call(xAxis);
+
+    svg.append('g')
+        .attr('transform', `translate(${margin.left}, 0)`)
+        .call(yAxis);
+
+    svg.selectAll('rect')
+        .data(data)
+        .enter()
+        .append('rect')
+        .attr('x', d => margin.left + xScale(d.year))
+        .attr('y', d => yScale(d.month))
+        .attr('width', item.width)
+        .attr('height', item.height)
+        .attr('fill', 'red')
 };
