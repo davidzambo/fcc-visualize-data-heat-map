@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Archivo+Narrow');
+$lightblue: #31C8D1;
+$darkblue : #456478;
+$orange: #FF5A28;
+$yellow: #FFC728;
+$background: #F4F1EC;
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Archivo Narrow', sans-serif;
+  background-color: $background;
+}
+
+.container {
+  min-height: 100%;
+  margin: auto;
+  position: relative;
+  background-color: $background;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  h1, h4{
+    text-align: center;
+    margin-bottom: 0;
+  }
+  h4{
+    margin-top: 0;
+  }
+}
+
+#tooltip{
+  background-color: $lightblue;
+  position: absolute;
+  width: 160px;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 0.125rem 0.25rem;
+  p {
+    line-height: 1rem;
+    margin: 0.25rem;
+    color: $darkblue;
+  }
+
+  &::after{
+    content: " ";
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 10px solid $lightblue;
+    position: absolute;
+    left: 67px;
+    bottom: -10px;
+  }
+}
+
+.hidden{
+  display: none;
+}
+
+svg{
+  display: block;
+  margin: auto;
+}
+
+.bar {
+  fill: $yellow;
+  &:hover {
+    fill: $orange;
+  }
+}
+
+footer{
+  background-color: black;
+  padding: 1rem;
+  text-align: center;
+  * {
+    vertical-align: middle;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  img {
+    height: 1.2rem;
+    width: auto;
+  }
+}
