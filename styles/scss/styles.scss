@@ -3,7 +3,8 @@ $lightblue: #31C8D1;
 $darkblue : #456478;
 $orange: #FF5A28;
 $yellow: #FFC728;
-$background: #F4F1EC;
+$darkgray: #333;
+$lightgray: #CCC;
 
 html,
 body {
@@ -12,38 +13,40 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Archivo Narrow', sans-serif;
-  background-color: $background;
 }
 
 .container {
   min-height: 100%;
   margin: auto;
   position: relative;
-  background-color: $background;
+  background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)), url(../../images/earth_map.jpg) no-repeat center;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  h1, h4{
+  overflow: hidden;
+  h1, p {
     text-align: center;
     margin-bottom: 0;
   }
-  h4{
+  p {
     margin-top: 0;
   }
 }
 
 #tooltip{
-  background-color: $lightblue;
+  background-color: $darkgray;
   position: absolute;
   width: 160px;
   height: 50px;
   border-radius: 5px;
   font-size: 1rem;
   padding: 0.125rem 0.25rem;
+  box-shadow: 4px 4px 5px #456478;
   p {
+    text-align: left;
     line-height: 1rem;
     margin: 0.25rem;
-    color: $darkblue;
+    color: $lightgray;
   }
 
   &::after{
@@ -52,7 +55,7 @@ body {
     height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    border-top: 10px solid $lightblue;
+    border-top: 10px solid $darkgray;
     position: absolute;
     left: 67px;
     bottom: -10px;
@@ -66,13 +69,9 @@ body {
 svg{
   display: block;
   margin: auto;
-}
-
-.bar {
-  fill: $yellow;
-  &:hover {
-    fill: $orange;
-  }
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 5px 5px 10px $darkgray;
+  border-radius: 5px;
 }
 
 footer{
